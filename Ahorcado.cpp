@@ -7,8 +7,9 @@ const int Errores_maximos = 7;
 
 int main()
 {
-    int n, idioma_palabras;
+    int n, idioma_palabras, nombre_jugador;
     string espaniol, ingles;
+    string jugador1, adivinador1;
 
     cout << "Ingrese el numero de la opcion a elegir" << endl;
     cout << "1. Configuracion del juego" << endl;
@@ -65,8 +66,31 @@ int main()
             cout << "Ingresa el idioma en que deseas jugar" << endl;
             break;
         case 3:
-            cout << "Elige el nombre en el que deseas jugar" << endl;
-            break;
+            cout << "Ingresa el idioma en el que deseas jugar" << endl;
+            cout << "1. Espaniol" << endl;
+            cout << "2. Ingles" << endl;
+            int p;
+            cin >> p;
+
+            switch (p){
+                case 1:
+                    cout << "Ingresa el nombre del jugador que insertara la palabra: " << endl;
+                    cin >> jugador1;
+                    cout << "Ingrese el nombre del adivinador: " << endl;
+                    cin >> adivinador1;
+                    break;
+
+                case 2:
+                    cout << "Enter the name of the player who will insert the word:" << endl;
+                    cin >> jugador1;
+                    cout << "Enter guesser's name: " << endl;
+                    cin >> adivinador1;
+                    break;
+
+                default:
+                    cout << "La opcion que a elegido no existe, por favor ingrese un numero valido" << endl;
+                    break;
+            }
         case 4:
             cout << "Saliendo del juego..." << endl;
             exit(-1);
