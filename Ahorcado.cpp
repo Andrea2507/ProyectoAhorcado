@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -28,7 +29,9 @@ int main()
             system("cls");
             ConfigurarJuego();
             break;
-
+        case 2:
+            system("cls");
+            JugarComputadora();
         default:
             cout << "Debe ingresar un numero en el rango de 1 a 4" << endl;
             break;
@@ -46,10 +49,10 @@ void Menu()
     cout << "3. Jugar con un usuario" << endl;
     cout << "4. Salir del juego" << endl;
 }
+
 void ConfigurarJuego()
 {
     int opc = 0;
-    cout << "Ingrese el numero de opcion a elegir"<<endl;
     cout << "1. Ingresar palabras en espaniol" << endl;
     cout << "2. Ingresar palabras en ingles" << endl;
     cin >> opc;
@@ -95,5 +98,120 @@ void ConfigurarJuego()
             }
         } while (palabra.length() > 0 && contador < 10);
         cantidadPalabrasIngles = contador;
+    }
+}
+
+void JugarComputadora()
+{
+    int opc = 0;
+    cout << "Ingrese en que idioma desea jugar" << endl;
+    cout << "1. Espaniol" << endl;
+    cout << "2. Ingles" << endl;
+    cin >> opc;
+    if(opc == 1)
+    {
+        string palabra;
+        srand(time(NULL));
+        int numeroAleatorio = rand() % cantidadPalabrasEspaniol + 1;
+        int fallos = 0;
+        int aciertos = 0;
+        palabra = palabrasEspaniol[numeroAleatorio-1];
+        char palabrajuego[20];
+        char letra;
+        for (int i = 0; i < 20; i++)
+        {
+            palabrajuego[i] = '-';
+        }
+        do
+        {
+
+
+            cout << "Adivina la palabra" << endl;
+            cout << "Escribe una letra y oprime enter" << endl;
+            for (int i = 0; i < palabra.length(); i++)
+            {
+                cout << palabrajuego[i];
+            }
+            cout << endl;
+            cin >> letra;
+            size_t pos = -1;
+            pos = palabra.find(letra);
+
+            if(pos == string::npos)
+            {
+                fallos++;
+                cout << "La letra no esta en la palabra" << endl;
+                cout << "Fallo No. " << fallos << endl;
+                if(fallos == 7) cout << "Ha perdido no pudo adivinar la palabra.";
+            }
+
+            while (pos != string::npos && pos != -1)
+            {
+                palabrajuego[pos] = letra;
+                cout << "La letra '" << letra << "' fue encontrada en la posicion " << pos+1 << " de la palabra." << endl;
+                aciertos++;
+                pos = palabra.find(letra, pos + 1);
+            }
+
+            pos = -1;
+            if(aciertos == palabra.length())
+            {
+                cout << "Excelente ha adivinado la palabra" << endl;
+                system("pause");
+            }
+        } while (fallos < 7 && aciertos < palabra.length());
+
+    }
+    else if(opc == 2)
+    {
+        string palabra;
+        srand(time(NULL));
+        int numeroAleatorio = rand() % cantidadPalabrasIngles + 1;
+        int fallos = 0;
+        int aciertos = 0;
+        palabra = palabrasIngles[numeroAleatorio-1];
+        char palabrajuego[20];
+        char letra;
+        for (int i = 0; i < 20; i++)
+        {
+            palabrajuego[i] = '-';
+        }
+        do
+        {
+
+            cout << "guess the word" << endl;
+            cout << "Type a letter and press enter" << endl;
+            for (int i = 0; i < palabra.length(); i++)
+            {
+                cout << palabrajuego[i];
+            }
+            cout << endl;
+            cin >> letra;
+            size_t pos = -1;
+            pos = palabra.find(letra);
+
+            if(pos == string::npos)
+            {
+                fallos++;
+                cout << "The letter is not in the word" << endl;
+                cout << "Fault no." << fallos << endl;
+                if(fallos == 7) cout << "You lost couldn't guess the word.";
+            }
+
+            while (pos != string::npos && pos != -1)
+            {
+                palabrajuego[pos] = letra;
+                cout << "The letter '" << letra << "' was found in the position " << pos+1 << " of the word." << endl;
+                aciertos++;
+                pos = palabra.find(letra, pos + 1);
+            }
+
+            pos = -1;
+            if(aciertos == palabra.length())
+            {
+                cout << "Excellent you guessed the word" << endl;
+                system("pause");
+            }
+        } while (fallos < 7 && aciertos < palabra.length());
     }
 }
