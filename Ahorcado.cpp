@@ -13,6 +13,7 @@ string palabrasIngles[10];
 void Menu();
 void ConfigurarJuego();
 void JugarComputadora();
+void SalirJuego();
 
 int main()
 {
@@ -32,6 +33,26 @@ int main()
         case 2:
             system("cls");
             JugarComputadora();
+
+        default:
+            cout << "Debe ingresar un numero en el rango de 1 a 4" << endl;
+            cout << "You must enter a number in the range from 1 to 4" << endl;
+            break;
+        }
+    } while (n != 4);
+
+    do
+    {
+        system("cls");
+        Menu();
+        cin >> n;
+
+        switch (n)
+        {
+        case 4:
+            system("cls");
+            SalirJuego();
+
         default:
             cout << "Debe ingresar un numero en el rango de 1 a 4" << endl;
             cout << "You must enter a number in the range from 1 to 4" << endl;
@@ -50,7 +71,7 @@ void Menu()
     cout << "3. Jugar con un usuario" << endl;
     cout << "4. Salir del juego" << endl;
 
-    cout << "Enter the number of the option to choose" << endl;
+    cout <<endl << "Enter the number of the option to choose" << endl;
     cout << "1. Game settings" << endl;
     cout << "2. Player vs COM" << endl;
     cout << "2. Player vs Player" << endl;
@@ -60,10 +81,12 @@ void Menu()
 void ConfigurarJuego()
 {
     int opc = 0;
+    cout << "Ingrese el numero de la opcion a elegir" << endl;
     cout << "1. Ingresar palabras en espaniol" << endl;
     cout << "2. Ingresar palabras en ingles" << endl;
 
-    cout << "1. Enter words in Spanish" << endl;
+    cout <<endl << "Enter the number of the option to choose" << endl;
+    cout  << "1. Enter words in Spanish" << endl;
     cout << "2. Enter wrods in English" << endl;
     cin >> opc;
     if(opc == 1)
@@ -228,4 +251,7 @@ void JugarComputadora()
             }
         } while (fallos < 7 && aciertos < palabra.length());
     }
+}
+void SalirJuego(){
+exit (-1);
 }
