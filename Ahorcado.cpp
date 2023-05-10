@@ -13,7 +13,7 @@ string palabrasIngles[10];
 void Menu();
 void ConfigurarJuego();
 void JugarComputadora();
-void SalirJuego();
+void JugarUsuario();
 
 int main()
 {
@@ -23,40 +23,27 @@ int main()
         system("cls");
         Menu();
         cin >> n;
-
         switch (n)
         {
-        case 1:
-            system("cls");
-            ConfigurarJuego();
-            break;
-        case 2:
-            system("cls");
-            JugarComputadora();
-
-        default:
-            cout << "Debe ingresar un numero en el rango de 1 a 4" << endl;
-            cout << "You must enter a number in the range from 1 to 4" << endl;
-            break;
-        }
-    } while (n != 4);
-
-    do
-    {
-        system("cls");
-        Menu();
-        cin >> n;
-
-        switch (n)
-        {
-        case 4:
-            system("cls");
-            SalirJuego();
-
-        default:
-            cout << "Debe ingresar un numero en el rango de 1 a 4" << endl;
-            cout << "You must enter a number in the range from 1 to 4" << endl;
-            break;
+            case 1:
+                system("cls");
+                ConfigurarJuego();
+                break;
+            case 2:
+                system("cls");
+                JugarComputadora();
+                break;
+            case 3:
+                system("cls");
+                JugarUsuario();
+                break;
+            case 4:
+                cout << "Saliendo del programa..." << endl;
+                break;
+            default:
+                cout << "Debe ingresar un numero en el rango de 1 a 4" << endl;
+                cout << "You must enter a number in the range from 1 to 4" << endl;
+                system("pause");
         }
     } while (n != 4);
 
@@ -74,7 +61,7 @@ void Menu()
     cout <<endl << "Enter the number of the option to choose" << endl;
     cout << "1. Game settings" << endl;
     cout << "2. Player vs COM" << endl;
-    cout << "2. Player vs Player" << endl;
+    cout << "3. Player vs Player" << endl;
     cout << "4. Exit game" << endl;
 }
 
@@ -252,6 +239,133 @@ void JugarComputadora()
         } while (fallos < 7 && aciertos < palabra.length());
     }
 }
-void SalirJuego(){
-exit (-1);
+void JugarUsuario (){
+    int opcion;
+    string usuario1, usuario2, palabra;
+    cout << "Ingrese en que idioma desea jugar" << endl;
+    cout << "1. Espaniol" << endl;
+    cout << "2. Ingles" << endl;
+
+    cout <<endl<< "Enter in which language you want to play" << endl;
+    cout << "1. Spanish" << endl;
+    cout << "2. English" << endl;
+    cin >> opcion;
+    system("cls");
+    if(opcion == 1){
+    cout<<"Ingrese el nombre de la persona que va a escribir la palabra a adivinar"<< endl;
+    cin>>usuario1;
+    cout<<"Ingrese el nombre de la persona que va a adivinar la palabra"<< endl;
+    cin>>usuario2;
+    system("cls");
+
+    cout<<"Ingrese la palabra a adivinar"<<endl;
+    cin>>palabra;
+    system("cls");
+
+        int fallos = 0;
+        int aciertos = 0;
+        char palabrajuego[20];
+        char letra;
+        for (int i = 0; i < 20; i++)
+        {
+            palabrajuego[i] = '-';
+        }
+        do
+        {
+
+
+            cout << "Adivina la palabra" << endl;
+            cout << "Escribe una letra y oprime enter" << endl;
+            for (int i = 0; i < palabra.length(); i++)
+            {
+                cout << palabrajuego[i];
+            }
+            cout << endl;
+            cin >> letra;
+            size_t pos = -1;
+            pos = palabra.find(letra);
+
+            if(pos == string::npos)
+            {
+                fallos++;
+                cout << "La letra no esta en la palabra" << endl;
+                cout << "Fallo No. " << fallos << endl;
+                if(fallos == 7) cout << "Ha perdido no pudo adivinar la palabra.";
+            }
+
+            while (pos != string::npos && pos != -1)
+            {
+                palabrajuego[pos] = letra;
+                cout << "La letra '" << letra << "' fue encontrada en la posicion " << pos+1 << " de la palabra." << endl;
+                aciertos++;
+                pos = palabra.find(letra, pos + 1);
+            }
+
+            pos = -1;
+            if(aciertos == palabra.length())
+            {
+                cout << "Excelente ha adivinado la palabra" << endl;
+                system("pause");
+            }
+        } while (fallos < 7 && aciertos < palabra.length());
+
+    }
+    if(opcion == 2){
+    cout<<"Enter the name of the person who is going to write the word to guess"<< endl;
+    cin>>usuario1;
+    cout<<"Enter the name of the person who is going to guess the word"<< endl;
+    cin>>usuario2;
+    system("cls");
+
+    cout<<"Enter the word to guess"<<endl;
+    cin>>palabra;
+    system("cls");
+
+        int fallos = 0;
+        int aciertos = 0;
+        char palabrajuego[20];
+        char letra;
+        for (int i = 0; i < 20; i++)
+        {
+            palabrajuego[i] = '-';
+        }
+        do
+        {
+
+
+            cout << "Guess the word" << endl;
+            cout << "Type a letter and press enter" << endl;
+            for (int i = 0; i < palabra.length(); i++)
+            {
+                cout << palabrajuego[i];
+            }
+            cout << endl;
+            cin >> letra;
+            size_t pos = -1;
+            pos = palabra.find(letra);
+
+            if(pos == string::npos)
+            {
+                fallos++;
+                cout << "The letter is not in the word" << endl;
+                cout << "Fault no." << fallos << endl;
+                if(fallos == 7) cout << "You lost couldn't guess the word.";
+            }
+
+            while (pos != string::npos && pos != -1)
+            {
+                palabrajuego[pos] = letra;
+                cout << "The letter '" << letra << "' was found in the position " << pos+1 << " of the word." << endl;
+                aciertos++;
+                pos = palabra.find(letra, pos + 1);
+            }
+
+            pos = -1;
+            if(aciertos == palabra.length())
+            {
+                cout << "Excellent you guessed the word" << endl;
+                system("pause");
+            }
+        } while (fallos < 7 && aciertos < palabra.length());
+    }
 }
