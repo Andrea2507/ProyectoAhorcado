@@ -34,6 +34,7 @@ int main()
             JugarComputadora();
         default:
             cout << "Debe ingresar un numero en el rango de 1 a 4" << endl;
+            cout << "You must enter a number in the range from 1 to 4" << endl;
             break;
         }
     } while (n != 4);
@@ -48,6 +49,12 @@ void Menu()
     cout << "2. Jugar con la computadora" << endl;
     cout << "3. Jugar con un usuario" << endl;
     cout << "4. Salir del juego" << endl;
+
+    cout << "Enter the number of the option to choose" << endl;
+    cout << "1. Game settings" << endl;
+    cout << "2. Player vs COM" << endl;
+    cout << "2. Player vs Player" << endl;
+    cout << "4. Exit game" << endl;
 }
 
 void ConfigurarJuego()
@@ -55,6 +62,9 @@ void ConfigurarJuego()
     int opc = 0;
     cout << "1. Ingresar palabras en espaniol" << endl;
     cout << "2. Ingresar palabras en ingles" << endl;
+
+    cout << "1. Enter words in Spanish" << endl;
+    cout << "2. Enter wrods in English" << endl;
     cin >> opc;
     if(opc == 1)
     {
@@ -80,9 +90,9 @@ void ConfigurarJuego()
     }
     else if(opc == 2)
     {
-        cout << "Para ingresar una palabra Escribala y oprima enter" << endl;
-        cout << "Puede ingresar un maximo de 10 palabras" << endl;
-        cout << "Si ya no desea ingresar mas palabras solo oprima enter" << endl;
+        cout << "To enter a word type it and press enter" << endl;
+        cout << "You can enter a maximum of 10 words" << endl;
+        cout << "If you no longer want to enter more words just press enter" << endl;
         int contador = 0;
         string palabra = "";
         cin.ignore();
@@ -107,6 +117,10 @@ void JugarComputadora()
     cout << "Ingrese en que idioma desea jugar" << endl;
     cout << "1. Espaniol" << endl;
     cout << "2. Ingles" << endl;
+
+    cout << "Enter in which language you want to play" << endl;
+    cout << "1. Spanish" << endl;
+    cout << "2. English" << endl;
     cin >> opc;
     if(opc == 1)
     {
@@ -179,7 +193,7 @@ void JugarComputadora()
         do
         {
 
-            cout << "guess the word" << endl;
+            cout << "Guess the word" << endl;
             cout << "Type a letter and press enter" << endl;
             for (int i = 0; i < palabra.length(); i++)
             {
