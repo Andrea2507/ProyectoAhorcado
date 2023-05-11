@@ -18,6 +18,7 @@ void JugarUsuario();
 int main()
 {
     int n;
+    int VolverJugar;
     do
     {
         system("cls");
@@ -31,7 +32,15 @@ int main()
                 break;
             case 2:
                 system("cls");
-                JugarComputadora();
+                VolverJugar = 1;
+                while (VolverJugar == 1)
+                {
+                    JugarComputadora();
+                    cout << "Presione 1 si quiere volver a jugar y cualquier otro numero si quiere volver al menu" << endl;
+                    cout << "Press 1 if you want to play again and any other number if you want to return to the menu" << endl;
+                    cin >> VolverJugar;
+                    system ("cls");
+                }
                 break;
             case 3:
                 system("cls");
@@ -181,7 +190,7 @@ void JugarComputadora()
             if(aciertos == palabra.length())
             {
                 cout << "Excelente ha adivinado la palabra" << endl;
-                system("pause");
+
             }
         } while (fallos < 7 && aciertos < palabra.length());
 
@@ -234,13 +243,13 @@ void JugarComputadora()
             if(aciertos == palabra.length())
             {
                 cout << "Excellent you guessed the word" << endl;
-                system("pause");
+
             }
         } while (fallos < 7 && aciertos < palabra.length());
     }
 }
 void JugarUsuario (){
-    int opcion;
+    int opcion, volver;
     string usuario1, usuario2, palabra;
     cout << "Ingrese en que idioma desea jugar" << endl;
     cout << "1. Espaniol" << endl;
@@ -257,7 +266,7 @@ void JugarUsuario (){
     cout<<"Ingrese el nombre de la persona que va a adivinar la palabra"<< endl;
     cin>>usuario2;
     system("cls");
-
+    do{
     cout<<"Ingrese la palabra a adivinar"<<endl;
     cin>>palabra;
     system("cls");
@@ -302,12 +311,16 @@ void JugarUsuario (){
             }
 
             pos = -1;
-            if(aciertos == palabra.length())
+             if(aciertos == palabra.length())
             {
                 cout << "Excelente ha adivinado la palabra" << endl;
-                system("pause");
+                cout << "Presione 1 si quiere volver a jugar y cualquier otro numero si quiere volver al menu" <<endl;
+                cin>>volver;
+                system ("cls");
+
             }
         } while (fallos < 7 && aciertos < palabra.length());
+    } while(volver==1);
 
     }
     if(opcion == 2){
@@ -316,7 +329,7 @@ void JugarUsuario (){
     cout<<"Enter the name of the person who is going to guess the word"<< endl;
     cin>>usuario2;
     system("cls");
-
+    do{
     cout<<"Enter the word to guess"<<endl;
     cin>>palabra;
     system("cls");
@@ -364,8 +377,13 @@ void JugarUsuario (){
             if(aciertos == palabra.length())
             {
                 cout << "Excellent you guessed the word" << endl;
-                system("pause");
+                cout << "Press 1 if you want to play again and any other number if you want to return to the menu" <<endl;
+                cin>>volver;
+                system ("cls");
+
             }
         } while (fallos < 7 && aciertos < palabra.length());
-    }
+    }while (volver==1);
 }
+}
+
